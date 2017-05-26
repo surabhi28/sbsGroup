@@ -1,0 +1,83 @@
+﻿
+    <!-- /TinyMCE -->
+   
+       
+        <div class="grid_10" ng-controller="servCtrl as sctrl">
+            <div class="box round first fullpage">
+                <h2>
+                    Form Controls</h2>
+                <div class="block ">
+
+                    <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+    
+          <form class="form-horizontal" action="http://localhost:3000/services" method="POST">
+          <fieldset>
+            <div id="legend">
+              <legend class="">SERVICE</legend>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="servicename">Name</label>
+              <div class="controls">
+                <input type="text" id="srvicename" name="servicename" placeholder="" class="form-control input-lg">
+                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="short_desc">Short-description</label>
+              <div class="controls">
+                <textarea id="short_desc" name="short_desc" placeholder="" class="form-control input-lg"></textarea>
+                <p class="help-block">Not more than 30 words</p>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="description">Description</label>
+              <div class="controls">
+                <textarea id="description" name="description" placeholder="" class="form-control input-lg"></textarea>
+                <p class="help-block">not more than 150 words</p>
+              </div>
+            </div>
+         
+<!--             <div class="control-group">
+              <label class="control-label" for="email">E-mail</label>
+              <div class="controls">
+                <input type="email" id="email" name="email" placeholder="" class="form-control input-lg">
+                <p class="help-block">Please provide your E-mail</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <label class="control-label" for="password">Password</label>
+              <div class="controls">
+                <input type="password" id="password" name="password" placeholder="" class="form-control input-lg">
+                <p class="help-block">Password should be at least 6 characters</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <label class="control-label" for="password_confirm">Password (Confirm)</label>
+              <div class="controls">
+                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="form-control input-lg">
+                <p class="help-block">Please confirm password</p>
+              </div>
+            </div>
+          -->
+            <div class="control-group">
+              <!-- Button -->
+              <div class="controls">
+                <button class="btn btn-success">Add</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+    
+    </div> 
+  </div>
+</div>
+
+
+                    </div>
+            </div>
+        </div>
+       

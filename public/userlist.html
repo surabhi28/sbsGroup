@@ -1,0 +1,145 @@
+<html>
+<head>
+	<title>inheritance</title>
+	<style type="text/css">
+table, th , td {
+ border: 1px solid grey;
+ border-collapse: collapse;
+ padding: 5px;
+}
+table tr:nth-child(odd) {
+ background-color: #f2f2f2;
+}
+table tr:nth-child(even) {
+ background-color: #ffffff;
+}
+	</style>
+</head>
+<body>
+<script  src = "js/angular.min.js"></script>
+  <script src="js/angular-resource.min.js"></script>
+<div ng-app = "myApp" ng-controller = "myCtrl">
+	name = {{name}}
+	<h1>harshit_mahajan</h1>
+<!-- json data from server : 	{{list}} -->
+<table >
+	<tr>
+		<th>Username</th>
+		<th>Password</th>
+		<th>Email</th>
+		
+	</tr>
+	<!--total items:{{ctrl.num}}-->
+	total items:{{ctrl.info.length}}
+	<tr ng-repeat = "item in list">
+	
+		<td>{{item.username}}</td>
+		<td>{{item.password}}</td>
+		<td>{{item.email}}</td>
+		
+	</tr>
+</table>
+
+
+</div>
+
+
+        
+
+<script>
+var app = angular.module ('myApp',['ngResource']);
+app.factory('UserService', function ($resource) {
+       var data = $resource('http://puppygifs.tumblr.com/api/read/json', {
+     //	var data = $resource('https://mydbapp16.herokuapp.com/view', {user: '@user'}, {
+      update:{
+          method:'PUT'
+          }
+      }/*,{
+      	delete:{
+      		methode:'DELETE'
+      	}
+      }*/);
+      return data;
+  });
+// since delete is defaultly defined
+app.controller('myCtrl',['$scope','$resource',function($scope,$resource){
+	$scope.name = 'working!!'
+	/* working
+			//get all data in a  variable (array) by using resource  */
+//var data = $resource('http://jsonplaceholder.typicode.com/todos',{});
+/*var data = $resource('https://mydbapp16.herokuapp.com/view',{});
+*/	
+var data = $resource('http://localhost:3000/users',{});
+
+//	var data = $resource('http://localhost:3000/promotions', {});
+	 $scope.list = data.query();
+	
+	 /*working      //get only a single item
+	var data = $resource('http://localhost:3000/dishes/:dishId', {dishId:'@id'});
+	//(dishId is just like a variable name which will be as a parameter with request and replaced by(@) id field)
+	$scope.list =  data.get({dishId:0});
+	// at this point value 0 will be replaced by parseInt($stateparams.id,10)
+	//to use promice , error handling :-data.get(...).$promise.then(function(responce){success function},function(responce){error function}); 
+	*/
+	/*working!    //post request (directly on a collection inserting a new document not on specific ID)
+	$resource('http://localhost:3000/dishes/:user',{user: "@user"}).save({name: 'harshit', email: 'hmharsh3@gmail.com'});
+	/* working!    //put operations
+	$scope.list = $resource('http://localhost:3000/dishes/:user',{user: "@user"}, {
+      update:{
+          method:'PUT'
+          }
+      }).update({user: 5}, {name: 'govinda', email: 'saimon@devdactic.com'});
+	*/
+	
+	/*
+      //working delete
+			$scope.list = $resource('http://localhost:3000/dishes/:user',{user: "@user"}, {
+      update:{
+          method:'PUT'
+          }
+      }).delete({user: 5});
+	*/
+	
+	/*working  //simple working with factory
+				//UserService.update({user: 5}, {name: 'govinda', email: 'saimon@devdactic.com'});
+				//UserService.save({name: 'harsh', email: 'hmharsh3@gmail.com'});
+				//$scope.list = UserService.get({user: 1});
+				//$scope.list = UserService.query();
+				//UserService.delete({user: 5});
+	*/
+		/*working //  working using promise
+				var dat = UserService.get({user: 1});
+				// or also:  var dat = UserService.query();
+				dat.$promise.then(function(da){
+				$scope.list = da;
+				},function(header){
+					$scope.list = "error"+header.status + header.statusText;
+				});
+		*/
+			
+//UserService.delete({user: 4});
+																		/*//not working : way :1        //update single and save 
+																		// for comments to save post is not used as comment is a fiels need to be updated to directly use put operation
+																					var data = $resource('http://localhost:3000/dishes/:dishId', {dishId:'@id'});
+																					data.get({id:0}, function(dish, getResponseHeaders){
+																						dish.name = "harshit";
+																	  					dish.$save();
+																					 });*/
+																				
+																				/*//	 way :2	
+																		$resource('http://localhost:3000/data/:name',{name: "@name"}, {'update':{method:'PUT' }}).update({name:'mmmmm'},{'name':'harshit'});*/
+																	   
+																	  /*  way 3 
+																	   $resource('http://localhost:3000/dishes/:dishId',{dishId: "@id"}).save({name: 'Saimon', email: 'saimon@devdactic.com'});
+																	   */
+/*$scope.list = $resource('http://localhost:3000/dishes/:user',{user: "@user"}, {
+      update:{
+          method:'PUT'
+          }
+      }).get({user: 1});
+*///$scope.list = $resource('http://jsonplaceholder.typicode.com/users/:user',{user: "@user"}).get({user: 1});
+// $resource('http://localhost:3000/dishes/:user',{user: "@user"}).save({name: 'harshit', email: 'hmharsh3@gmail.com'});
+}]);
+</script>
+</body>
+</html>
