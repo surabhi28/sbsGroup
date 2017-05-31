@@ -1,30 +1,77 @@
-<div  class="grid_10" ng-controller="serviceCtrl">
+
+
+<link rel="stylesheet" type="text/css" href="css/text.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/nav.css" media="screen" />
+    <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css" media="screen" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
+    <link href="css/table/demo_page.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN: load jquery -->
+    <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery.ui.core.min.js"></script>
+    <script src="js/jquery-ui/jquery.ui.widget.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.ui.accordion.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.effects.core.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.effects.slide.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.ui.mouse.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.ui.sortable.min.js" type="text/javascript"></script>
+    <script src="js/table/jquery.dataTables.min.js" type="text/javascript"></script>
+    <!-- END: load jquery -->
+    <script type="text/javascript" src="js/table/table.js"></script>
+    <script src="js/setup.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            setupLeftMenu();
+
+            $('.datatable').dataTable();
+            setSidebarHeight();
+
+
+        });
+    </script>
+
+
+
+
+
+
+
+
+ <div  class="grid_10" ng-controller="serviceCtrl" >
+
+            <div class="box round first grid">
+                <h2>SERVICES</h2>
+                <div class="block">
+                    
     
-<table datatable='ng' id ="tbl"  class="table table-striped table-bordered table hover" > 
+<table datatable='ng' class="data display datatable" > 
 <thead>
  <tr >
     
     <th> Service name</th>
     <th>Short Description</th>
     <th>Description</th>
+    <th>Edit</th>
+    <th>Delete</th>
    <!--  <th>update</th>
     <th>delete</th>
      -->
 
  </tr>
  </thead>
-  <tr class="w3-hover-blue" ng-repeat="x in services ">
-   
-    <td >{{ x.servicename }}</td>
-    <td>{{ x.short_desc}}</td>
-    <td>{{ x.description}}</td>
- 
 
-<!-- 
- <td><a ng-href="http://localhost:3000/html/home.html?val=" + {{x.telephone}}>Update</a></td> -->
-    <!-- <td><a ng-href="/{{x.telephone}}">Update</a></td> 
-    <td><a ng-href="{{x.telephone}}">Delete</a></td>  -->
- <!--    <td><a href = "http://localhost:3000/html/home.html?val=" + {{x.telephone}} >update </a></td> -->
+  <tr class="odd gradeX" ng-repeat="x in name ">
+<!--  <td>{{x._id}}</td> -->
+    <td class="center">{{ x.servicename }}</td>
+    <td class="center">{{ x.short_desc}}</td>
+    <td class="center">{{ x.description}}</td>
+
+       <td><a ng-href="/{{x._id}}">update</a></td> 
+   <!--  <td class="center"><a ng-href = /users/logus{{x._id}}>Delete</a></td> -->
+      <td><button ng-click="remove(x._id)">Remove</button></td>
+
 
   
   </tr>
@@ -32,3 +79,24 @@
 </div>
 
 </div>
+<!-- 
+<script>
+var app = angular.module('myApp', []);
+app.controller('serviceCtrl', function($scope, $http) {
+    $http.get("http://localhost:3000/data/viewdata")
+    
+    .then(function (response) {$scope.names = response.data;});
+    app.toDate = function(h) {
+    return ("h")
+  };
+});
+
+</script> -->
+
+
+// <!-- (within 100)
+// rapofit (multivitamin) : 20 (98) (calsul)
+// cherol : 10 (55) (tablet)
+
+
+ 

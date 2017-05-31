@@ -1,0 +1,139 @@
+
+    <!-- /TinyMCE -->
+   <style type="text/css">
+     table { border-collapse: collapse; }
+.percent {
+    position: absolute; width: 300px; height: 14px; z-index: 1; text-align: center; font-size: 0.8em; color: white;
+}
+.progress-bar {
+    width: 300px; height: 14px;
+    border-radius: 10px;
+    border: 1px solid #CCC;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#6666cc), to(#4b4b95));
+    border-image: initial;
+}
+.uploaded {
+    padding: 0;
+    height: 14px;
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#66cc00), to(#4b9500));
+    border-image: initial;
+}
+.dropbox {
+    width: 15em;
+    height: 3em;
+    border: 2px solid #DDD;
+    border-radius: 8px;
+    background-color: #FEFFEC;
+    text-align: center;
+    color: #BBB;
+    font-size: 2em;
+    font-family: Arial, sans-serif;
+}
+.dropbox span {
+    margin-top: 0.9em;
+    display: block;
+}
+.dropbox.not-available {
+    background-color: #F88;
+}
+.dropbox.over {
+    background-color: #bfb;
+}
+
+
+
+   </style> 
+       
+        <div class="grid_10" ng-controller="portfolioCtrl">
+            <div class="box round first fullpage">
+                <h2>
+                    Form Controls</h2>
+                <div class="block ">
+
+                    <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+    
+          <form class="form-horizontal" action="http://localhost:3000/portfolio" method="POST">
+          <fieldset>
+            <div id="legend">
+              <legend class="">PORTFOLIO</legend>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="portfolioname">Name</label>
+              <div class="controls">
+                <input type="text" id="portfolioname" name="portfolioname" placeholder="" class="form-control input-lg">
+               <!--  <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+   -->            </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="type">Type</label>
+              <div class="controls">
+                <input type="text" id="type" name="type" placeholder="" class="form-control input-lg">
+               <!--  <p class="help-block">Not more than 30 words</p>
+   -->            </div>
+            </div>
+           
+            <div class="control-group">
+              <label class="control-label" for="short_desc">Short-description</label>
+              <div class="controls">
+                <textarea id="short_desc" name="short_desc" placeholder="" class="form-control input-lg"></textarea>
+                <p class="help-block">Not more than 30 words</p>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="description">Short-description</label>
+              <div class="controls">
+                <textarea id="description" name="description" placeholder="" class="form-control input-lg"></textarea>
+                <p class="help-block">Not more than 30 words</p>
+              </div>
+            </div>
+
+           <div class="control-group">
+                <form  ng-controller="MyCtrl as up" name="up.upload_form">
+                Single Image with validations
+            <input 
+                type="file" 
+                ngf-select 
+                ng-model="up.file" 
+                name="file" 
+                ngf-pattern="'image/*'"
+                accept="image/*" 
+                ngf-max-size="20MB" 
+                />
+            Image thumbnail: <img style="width:100px;" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+            <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+          <!--   <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+            {{up.file.size / 1000000|number:1}}MB: max 20M</i> -->
+           <!--  Multiple files
+            <div class="button" ngf-select ng-model="up.files" ngf-multiple="true">Select</div>
+            Drop files: <div ngf-drop ng-model="up.files" class="drop-box">Drop</div> -->
+            <input type="button" ng-click="up.submit()">submit</inputs>
+            <p>{{up.progress}}</p>
+        </form>
+
+           </div>
+
+           
+          <div class="control-group">
+              <!-- Button -->
+              <div class="controls">
+                <button class="btn btn-success">Add</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+    
+    </div> 
+  </div>
+</div>
+
+
+                    </div>
+            </div>
+        </div>
+       
+
+      
+      

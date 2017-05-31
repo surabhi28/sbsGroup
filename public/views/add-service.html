@@ -8,11 +8,121 @@
                     Form Controls</h2>
                 <div class="block ">
 
+<!-- 
+<td><a ng-href = /users/edituser/{{x._id}}>Edit</a></td>
+
+
+
+router.get('/edituser/:id', function(req, res, next) {
+res.redirect('/mw/pages/index.html#/edituser?id='+req.params.id);
+});
+
+   $http.post("/users/userdata").success(function (response)
+                            {
+                                $scope.names = response;
+                            });
+
+router.post('/userdata',Verify.verifyOrdinaryUser, function(req, res, next) {
+   MongoClient.connect(config.mongoUrl,function(err,db){
+     assert.equal(err,null);
+     var collection = db.collection('user');
+         collection.find().toArray(function(err,docss){
+          assert.equal(err,null);
+           delete docss[0].password;
+          res.json(docss)
+          db.close();
+       });
+   });
+});
+
+
+
+
+ $http.post('/users/updateuser', parameter).
+            success(function(data, status, headers, config) {
+                //alert("data.status")
+                  $scope.info = data.status
+                  }).
+           error(function(data, status, header, config) {
+                        
+                         // alert(data.status)
+                           $scope.info = data.status
+                         
+         });
+
+
+
+     
+
+     router.post('/updateuser', function(req, res, next) {
+
+ MongoClient.connect(config.mongoUrl,function(err,db){
+    assert.equal(err,null);
+    var collection = db.collection('user');
+         collection.find({'_id':require('mongodb').ObjectID(req.body.id)}).toArray(function(err,docss){
+          assert.equal(err,null);
+          if(docss.length==0){
+                                              res.status(409).json({
+                                              status: 'No such Data Present in database please contact admin',
+                                              success: false
+                                              });
+          }
+          else
+          {
+             if(req.body.password && req.body.role)
+             {
+               console.log("request from edit user page to update user info hance remove password field and add two more role and keyword field which can only changed by admin with password change also");
+              //update password also
+                    collection.updateOne ({'_id':require('mongodb').ObjectID(req.body.id)}
+                      , { $set: {'firstname':req.body.firstname,'lastname':req.body.lastname,'contact':req.body.contact,'email':req.body.email,'password':req.body.password,'keyword':req.body.keyword,'role':req.body.role} }, null, function(err, result) {
+                      });
+                      assert.equal(err, null);
+                      
+             }
+             else if(req.body.password){
+                    console.log("request made by user itself.. with passsword updating requesting also..")
+                   collection.updateOne ({'_id':require('mongodb').ObjectID(req.body.id)}
+                          , { $set: {'firstname':req.body.firstname,'lastname':req.body.lastname,'contact':req.body.contact,'email':req.body.email,'password':req.body.password} }, null, function(err, result) {
+                          });
+                          assert.equal(err, null);
+
+             }
+             else if (req.body.role){
+              console.log("request from edit user page to update user info hance remove password field and add two more role and keyword field which can only changed by admin");
+                collection.updateOne ({'_id':require('mongodb').ObjectID(req.body.id)}
+                            , { $set: {'firstname':req.body.firstname,'lastname':req.body.lastname,'contact':req.body.contact,'email':req.body.email,'keyword':req.body.keyword,'role':req.body.role} }, null, function(err, result) {
+                           });
+                            assert.equal(err, null);
+             }
+             else
+             {
+              console.log("request made by user itself.. ..")
+                        collection.updateOne ({'_id':require('mongodb').ObjectID(req.body.id)}
+                            , { $set: {'firstname':req.body.firstname,'lastname':req.body.lastname,'contact':req.body.contact,'email':req.body.email} }, null, function(err, result) {
+                           });
+                            assert.equal(err, null);
+                             
+
+             }
+                                               res.status(200).json({
+                                              status: 'Data updated successfully login again to view changes',
+                                              success: true
+                                              });
+          }
+          db.close();
+        });
+       });
+
+});    
+ -->
+
+
+
                     <div class="container">
   <div class="row">
     <div class="col-md-6">
     
-          <form class="form-horizontal" action="http://localhost:3000/services" method="POST">
+          <form class="form-horizontal" action="http://localhost:3000/add-services" method="POST">
           <fieldset>
             <div id="legend">
               <legend class="">SERVICE</legend>

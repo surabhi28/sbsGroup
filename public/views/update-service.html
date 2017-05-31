@@ -1,0 +1,59 @@
+
+    <!-- /TinyMCE -->
+   
+       
+        <div class="grid_10" ng-controller="updateCtrl">
+            <div class="box round first fullpage">
+                <h2>
+                    Form Controls</h2>
+                <div class="block ">
+
+                    <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+    
+          <form class="form-horizontal" action="http://localhost:3000/updateuser" method="POST">
+          <fieldset>
+            <div id="legend">
+              <legend class="">SERVICE</legend>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="servicename">Name</label>
+              <div class="controls">
+                <input type="text" id="servicename" value="{{names[0].servicename}}" name="servicename" placeholder="" class="form-control input-lg">
+                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="short_desc">Short-description</label>
+              <div class="controls">
+                <textarea id="short_desc" name="short_desc"  placeholder="" class="form-control input-lg">{{names[0].short_desc}}</textarea>
+                <p class="help-block">Not more than 30 words</p>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="description">Description</label>
+              <div class="controls">
+                <textarea id="description" name="description" placeholder="" class="form-control input-lg">{{names[0].description}}</textarea>
+                <p class="help-block">not more than 150 words</p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <!-- Button -->
+              <div class="controls">
+                <button class="btn btn-success">Update </button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+    
+    </div> 
+  </div>
+</div>
+
+
+                    </div>
+            </div>
+        </div>
+       
